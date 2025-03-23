@@ -30,68 +30,26 @@ const events: Event[] = [
   },
   {
     id: "3",
-    title: "Culinary Workshop: Local Cuisine",
-    date: "June 16, 2024",
-    time: "3:00 PM - 6:30 PM",
+    title: "MINI GAME 1: ĐỔI AVATAR TRẠI",
+    date: "20/03/2025",
+    // time: "3:00 PM - 6:30 PM",
     description:
-      "Join our master chef for an interactive cooking class and learn how to prepare authentic local specialties using traditional methods.",
-    location: "Culinary Institute",
-    type: "content",
-    videoUrl:
-      "https://player.vimeo.com/external/409539003.sd.mp4?s=46da7683168e4d3a9df69c8c5e535279f2b7a214&profile_id=164&oauth2_token_id=57447761",
-    link: "https://example.com/cooking-class",
+      'Mini game khởi động trại thường niên 2025 "UNBOX - MỞ LÒNG" đã bắt đầu! Hãy thay avatar có khung logo, chia sẻ bài viết kèm hashtag #UNBOX2025 #BTNHIEPPHU để nhận ngay móc khóa độc quyền. ⏳ Thời gian: 20.03 - 22.04.2025. Đừng bỏ lỡ cơ hội khuấy động không khí trước ngày hội lớn!',
+    // location: "Culinary Institute",
+    type: "minigame",
+    imageUrl: "/src/assets/minigame1.png",
+    link: "https://www.facebook.com/share/p/1AcdsjgTuw/",
   },
   {
     id: "4",
-    title: "Mountain Excursion",
-    date: "June 17, 2024",
-    time: "8:00 AM - 4:30 PM",
-    description:
-      "Embark on a breathtaking journey through the mountain range. Witness stunning vistas and stop at picturesque villages along the way.",
-    location: "Mountain Range",
+    title: "Comming soon",
+    date: "26/03/2025",
+    // time: "8:00 AM - 4:30 PM",
+    description: "Comming soon",
+    // location: "Mountain Range",
     type: "content",
-    imageUrl:
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    link: "https://example.com/mountain-excursion",
-  },
-  {
-    id: "5",
-    title: "Local Market & Craft Shopping",
-    date: "June 18, 2024",
-    time: "10:00 AM - 2:00 PM",
-    description:
-      "Immerse yourself in the vibrant local market. Meet artisans, sample regional delicacies, and find unique souvenirs to bring home.",
-    location: "Central Market",
-    type: "content",
-    imageUrl:
-      "https://images.unsplash.com/photo-1519248200454-8f2590ed22b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80",
-    link: "https://example.com/local-market",
-  },
-  {
-    id: "6",
-    title: "Traditional Dance Workshop",
-    date: "June 19, 2024",
-    time: "2:00 PM - 4:00 PM",
-    description:
-      "Learn the basics of traditional folk dances from professional performers in this fun and engaging activity for all skill levels.",
-    location: "Cultural Center",
-    type: "content",
-    videoUrl:
-      "https://player.vimeo.com/external/448115772.sd.mp4?s=d2a4c8b4d1d8d9e4e3f8f0d9c5d1e1c1b6a7a5a3&profile_id=164&oauth2_token_id=57447761",
-    link: "https://example.com/dance-workshop",
-  },
-  {
-    id: "7",
-    title: "Farewell Sunset Cruise",
-    date: "June 20, 2024",
-    time: "5:00 PM - 8:00 PM",
-    description:
-      "Conclude your journey with a magical sunset cruise. Enjoy a gourmet dinner, live music, and toast to new friendships and experiences.",
-    location: "Harbor Marina",
-    type: "content",
-    imageUrl:
-      "https://images.unsplash.com/photo-1501446529957-6226bd447c46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
-    link: "https://example.com/sunset-cruise",
+    imageUrl: "/src/assets/commingsoon.png",
+    link: "#",
   },
 ];
 
