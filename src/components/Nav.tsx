@@ -36,7 +36,9 @@ const Nav = () => {
             href="/"
             className="font-display text-xl font-bold text-foreground flex items-center gap-2"
           >
-            <span>UNBOX - MỞ LÒNG</span>
+            <span>
+              <span className="text-primary">UNBOX</span> - MỞ LÒNG
+            </span>
           </a>
 
           <div className="flex items-center space-x-1">

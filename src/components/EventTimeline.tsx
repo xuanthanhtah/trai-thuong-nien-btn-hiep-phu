@@ -77,7 +77,7 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
             className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in"
             style={{ animationDelay: "0.1s" }}
           >
-            <span className="text-primary">UNBOX</span> MỞ LÒNG
+            <span className="text-primary">UNBOX</span> - MỞ LÒNG
           </h1>
           <p
             className="text-lg md:text-xl text-muted-foreground mb-10 animate-fade-in"
