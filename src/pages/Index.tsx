@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 const events: Event[] = [
   {
-    id: "1",
+    id: 1,
     title: "Mở link đăng kí",
     date: "05/03/2025",
     // time: "6:00 PM - 9:00 PM",
@@ -18,7 +18,7 @@ const events: Event[] = [
     link: "https://www.facebook.com/share/1EkXuC3PeQ/",
   },
   {
-    id: "2",
+    id: 2,
     title: "Sâu sắc về bài học trại",
     date: "12/03/2025",
     // time: "9:00 AM - 1:00 PM",
@@ -31,7 +31,7 @@ const events: Event[] = [
     link: "https://www.facebook.com/share/r/15w3yXS8G8/",
   },
   {
-    id: "3",
+    id: 3,
     title: "MINI GAME 1: ĐỔI AVATAR TRẠI",
     date: "20/03/2025",
     // time: "3:00 PM - 6:30 PM",
@@ -44,7 +44,7 @@ const events: Event[] = [
     link: "https://www.facebook.com/share/p/1AcdsjgTuw/",
   },
   {
-    id: "4",
+    id: 4,
     title: "Comming soon",
     date: "26/03/2025",
     // time: "8:00 AM - 4:30 PM",

@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export interface Event {
-  id: string;
+  id: number;
   title: string;
   date: string;
   time?: string;

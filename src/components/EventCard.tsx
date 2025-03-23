@@ -90,24 +90,21 @@ const EventCard: React.FC<EventCardProps> = ({ event, index }) => {
 
           <h3 className="text-xl font-bold mb-2">{event.title}</h3>
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3 text-muted-foreground">
-            <div className="flex items-center gap-1.5">
-              <Calendar className="h-4 w-4" />
-              <span className="text-sm">{event.date}</span>
-            </div>
-
-            <div className="flex items-center gap-1.5">
-              <Clock className="h-4 w-4" />
-              <span className="text-sm">{event.time}</span>
-            </div>
-
-            {event.location && (
+          {event.id % 2 !== 0 ? (
+            <div className="flex flex-col sm:flex-col sm:items-end gap-2 sm:gap-4 mb-3 text-muted-foreground">
               <div className="flex items-center gap-1.5">
-                <MapPin className="h-4 w-4" />
-                <span className="text-sm">{event.location}</span>
+                <Calendar className="h-4 w-4" />
+                <span className="text-sm">{event.date}</span>
               </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="flex flex-row sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3 text-muted-foreground">
+              <div className="flex items-center gap-1.5">
+                <Calendar className="h-4 w-4" />
+                <span className="text-sm">{event.date}</span>
+              </div>
+            </div>
+          )}
 
           <p className="text-muted-foreground mb-4 line-clamp-3 text-justify">
             {event.description}
