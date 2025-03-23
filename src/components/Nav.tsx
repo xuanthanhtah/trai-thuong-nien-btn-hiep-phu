@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { Plane } from 'lucide-react';
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -34,9 +35,10 @@ const Nav = () => {
         <div className="flex items-center justify-between">
           <a 
             href="/" 
-            className="font-display text-xl font-bold text-foreground"
+            className="font-display text-xl font-bold text-foreground flex items-center gap-2"
           >
-            EventScroll
+            <Plane className="h-5 w-5 text-primary rotate-45" />
+            <span>TravelScroll</span>
           </a>
           
           <div className="flex items-center space-x-1">
@@ -44,25 +46,25 @@ const Nav = () => {
               href="#"
               className="px-4 py-2 text-sm font-medium text-muted-foreground rounded-md hover:text-foreground transition-colors"
             >
-              About
+              Destinations
             </a>
             <a
               href="#"
               className="px-4 py-2 text-sm font-medium text-muted-foreground rounded-md hover:text-foreground transition-colors"
             >
-              Events
+              Itinerary
             </a>
             <a
               href="#"
               className="px-4 py-2 text-sm font-medium text-muted-foreground rounded-md hover:text-foreground transition-colors"
             >
-              Contact
+              Gallery
             </a>
             <a
               href="#"
               className="ml-4 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
             >
-              Register
+              Book Now
             </a>
           </div>
         </div>
