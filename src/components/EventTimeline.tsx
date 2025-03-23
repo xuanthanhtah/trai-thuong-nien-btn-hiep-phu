@@ -2,6 +2,8 @@
 import React, { useEffect, useRef } from 'react';
 import EventCard from './EventCard';
 import { ChevronDown } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Separator } from './ui/separator';
 
 export interface Event {
   id: string;
@@ -91,7 +93,7 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
       </div>
 
       <div ref={timelineRef} className="py-20 px-4 md:px-6 bg-secondary/5">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="mb-16 text-center reveal">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Your Journey Awaits</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -100,15 +102,39 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
           </div>
 
           <div className="relative">
-            {/* Center line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-primary/20"></div>
+            {/* Center timeline */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/20"></div>
             
             {events.map((event, index) => (
-              <div 
-                key={event.id} 
-                className={`timeline-connector relative py-12 ${index === events.length - 1 ? 'pb-0' : ''}`}
-              >
-                <EventCard event={event} index={index} />
+              <div key={event.id} className={cn(
+                "timeline-connector relative mb-16 md:mb-24 last:mb-0 grid grid-cols-1 md:grid-cols-2 gap-8 items-center",
+              )}>
+                {/* Timeline node */}
+                <div className="absolute left-1/2 top-0 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2 z-10">
+                  <div className="w-6 h-6 rounded-full bg-primary border-4 border-background"></div>
+                </div>
+                
+                {/* Event card - alternating sides */}
+                {index % 2 === 0 ? (
+                  <>
+                    <div className="md:text-right col-span-1 reveal" style={{ animationDelay: `${index * 0.1 + 0.1}s` }}>
+                      <EventCard event={event} index={index} />
+                    </div>
+                    <div className="col-span-1 hidden md:block"></div>
+                  </>
+                ) : (
+                  <>
+                    <div className="col-span-1 hidden md:block"></div>
+                    <div className="col-span-1 reveal" style={{ animationDelay: `${index * 0.1 + 0.1}s` }}>
+                      <EventCard event={event} index={index} />
+                    </div>
+                  </>
+                )}
+                
+                {/* Mobile view - shows all events in a single column */}
+                <div className="md:hidden col-span-1 reveal" style={{ animationDelay: `${index * 0.1 + 0.1}s` }}>
+                  {index % 2 === 1 && <EventCard event={event} index={index} />}
+                </div>
               </div>
             ))}
           </div>
