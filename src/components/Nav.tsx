@@ -62,7 +62,7 @@ const Nav = () => {
             </a> */}
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLScSZmwVBugCvBbH5RgVpL8DH8sY0XILCOZaprCA6m6JXz79oQ/viewform?usp=header"
-              className="ml-4 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+              className="ml-4 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors w-[170px]"
               target="_blank"
               rel="noreferrer"
             >
