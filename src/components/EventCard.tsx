@@ -109,7 +109,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, index }) => {
           {event.link && (
             <Button 
               variant="outline" 
-              className="mt-2 border-primary/20 text-primary hover:bg-primary/10"
+              className="mt-2 border-primary/20 text-primary hover:bg-primary/10 hover:text-primary hover:border-primary/20"
               asChild
             >
               <a href={event.link} target="_blank" rel="noopener noreferrer">
