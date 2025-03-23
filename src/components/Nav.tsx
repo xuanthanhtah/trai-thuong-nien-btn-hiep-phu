@@ -1,7 +1,6 @@
-
-import React, { useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
-import { Plane } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
+import { Plane } from "lucide-react";
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -16,9 +15,9 @@ const Nav = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -26,23 +25,22 @@ const Nav = () => {
     <nav
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300 ease-in-out",
-        scrolled 
-          ? "py-4 bg-background/80 backdrop-blur-lg shadow-sm" 
+        scrolled
+          ? "py-4 bg-background/80 backdrop-blur-lg shadow-sm"
           : "py-6 bg-transparent"
       )}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          <a 
-            href="/" 
+          <a
+            href="/"
             className="font-display text-xl font-bold text-foreground flex items-center gap-2"
           >
-            <Plane className="h-5 w-5 text-primary rotate-45" />
-            <span>TravelScroll</span>
+            <span>UNBOX - MỞ LÒNG</span>
           </a>
-          
+
           <div className="flex items-center space-x-1">
-            <a
+            {/* <a
               href="#"
               className="px-4 py-2 text-sm font-medium text-muted-foreground rounded-md hover:text-foreground transition-colors"
             >
@@ -59,12 +57,14 @@ const Nav = () => {
               className="px-4 py-2 text-sm font-medium text-muted-foreground rounded-md hover:text-foreground transition-colors"
             >
               Gallery
-            </a>
+            </a> */}
             <a
-              href="#"
+              href="https://docs.google.com/forms/d/e/1FAIpQLScSZmwVBugCvBbH5RgVpL8DH8sY0XILCOZaprCA6m6JXz79oQ/viewform?usp=header"
               className="ml-4 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+              target="_blank"
+              rel="noreferrer"
             >
-              Book Now
+              Đăng ký đi trại ngay
             </a>
           </div>
         </div>
