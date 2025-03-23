@@ -1,8 +1,9 @@
 
 import React from 'react';
 import { Event } from './EventTimeline';
-import { Calendar, Clock, MapPin, Plane, Hotel, Users, Mountain } from 'lucide-react';
+import { Calendar, Clock, MapPin, Plane, Hotel, Users, Mountain, ExternalLink } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from './ui/button';
 
 interface EventCardProps {
   event: Event;
@@ -42,45 +43,82 @@ const EventCard: React.FC<EventCardProps> = ({ event, index }) => {
 
   return (
     <div 
-      className="ml-10 reveal" 
+      className="reveal" 
       style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
     >
-      <div className="absolute left-0 top-0 w-6 h-6 rounded-full bg-primary border-4 border-background z-10"></div>
+      <div className="absolute left-1/2 transform -translate-x-1/2 top-0 w-6 h-6 rounded-full bg-primary border-4 border-background z-10"></div>
       
       <div className={cn(
-        "p-6 rounded-xl border bg-card/50 backdrop-blur-sm relative travel-card",
-        "transition-all duration-300"
+        "rounded-xl border bg-card/50 backdrop-blur-sm relative travel-card overflow-hidden",
+        "transition-all duration-300 max-w-xl mx-auto",
       )}>
-        <span className={cn(
-          "inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-0.5 rounded-full mb-3 border",
-          getEventTypeClass(event.type)
-        )}>
-          {getEventTypeIcon(event.type)}
-          {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
-        </span>
-        
-        <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-        
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3 text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <Calendar className="h-4 w-4" />
-            <span className="text-sm">{event.date}</span>
+        {event.imageUrl && (
+          <div className="w-full h-48 overflow-hidden">
+            <img 
+              src={event.imageUrl} 
+              alt={event.title} 
+              className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-110"
+            />
           </div>
-          
-          <div className="flex items-center gap-1.5">
-            <Clock className="h-4 w-4" />
-            <span className="text-sm">{event.time}</span>
+        )}
+        
+        {event.videoUrl && (
+          <div className="w-full h-48 overflow-hidden">
+            <video 
+              src={event.videoUrl} 
+              controls
+              className="w-full h-full object-cover"
+            >
+              Your browser does not support the video tag.
+            </video>
           </div>
+        )}
+        
+        <div className="p-6">
+          <span className={cn(
+            "inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-0.5 rounded-full mb-3 border",
+            getEventTypeClass(event.type)
+          )}>
+            {getEventTypeIcon(event.type)}
+            {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
+          </span>
           
-          {event.location && (
+          <h3 className="text-xl font-bold mb-2">{event.title}</h3>
+          
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-3 text-muted-foreground">
             <div className="flex items-center gap-1.5">
-              <MapPin className="h-4 w-4" />
-              <span className="text-sm">{event.location}</span>
+              <Calendar className="h-4 w-4" />
+              <span className="text-sm">{event.date}</span>
             </div>
+            
+            <div className="flex items-center gap-1.5">
+              <Clock className="h-4 w-4" />
+              <span className="text-sm">{event.time}</span>
+            </div>
+            
+            {event.location && (
+              <div className="flex items-center gap-1.5">
+                <MapPin className="h-4 w-4" />
+                <span className="text-sm">{event.location}</span>
+              </div>
+            )}
+          </div>
+          
+          <p className="text-muted-foreground mb-4">{event.description}</p>
+          
+          {event.link && (
+            <Button 
+              variant="outline" 
+              className="mt-2 border-primary/20 text-primary hover:bg-primary/10"
+              asChild
+            >
+              <a href={event.link} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Learn More
+              </a>
+            </Button>
           )}
         </div>
-        
-        <p className="text-muted-foreground">{event.description}</p>
       </div>
     </div>
   );

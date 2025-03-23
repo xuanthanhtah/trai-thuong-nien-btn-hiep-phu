@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -16,17 +17,22 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11.2%;
 
+    /* Main brand color */
     --primary: 350 71% 24%;  /* #671121 */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 350 71% 92%;
-    --secondary-foreground: 222 47.4% 11.2%;
+    /* Complementary colors */
+    --secondary: 42 100% 95%;  /* Sandy beige */
+    --secondary-foreground: 30 67% 20%;
+    
+    --tertiary: 198 93% 30%;  /* Ocean blue */
+    --tertiary-foreground: 200 100% 95%;
+    
+    --accent: 130 40% 30%;  /* Forest green */
+    --accent-foreground: 120 60% 95%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 217 10% 50.9%;
-
-    --accent: 349 71% 34%;
-    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -57,17 +63,22 @@
     --popover: 222 47% 11.2%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 350 71% 24%;  /* #671121 */
-    --primary-foreground: 222 47.4% 11.2%;
+    /* Main brand color */
+    --primary: 350 71% 44%;  /* Brighter version of #671121 for dark mode */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    /* Complementary colors for dark mode */
+    --secondary: 42 60% 20%;  /* Darker sandy beige */
+    --secondary-foreground: 30 67% 95%;
+    
+    --tertiary: 198 93% 40%;  /* Brighter ocean blue */
+    --tertiary-foreground: 200 100% 95%;
+    
+    --accent: 130 40% 40%;  /* Brighter forest green */
+    --accent-foreground: 120 60% 95%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 349 71% 42%;
-    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -106,6 +117,13 @@
   }
 }
 
+/* Font settings */
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
 /* Scroll animations */
 .reveal {
   opacity: 0;
@@ -124,7 +142,8 @@
   position: absolute;
   top: 24px;
   bottom: 0;
-  left: 12px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 2px;
   background: theme('colors.primary.DEFAULT');
   opacity: 0.3;
@@ -136,17 +155,17 @@
   position: absolute;
   top: 24px;
   bottom: 0;
-  left: 12px;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0);
   width: 2px;
   background: linear-gradient(to bottom, theme('colors.primary.DEFAULT'), rgba(0,0,0,0));
   transform-origin: top;
   transition: transform 1.5s ease;
-  transform: scaleY(0);
   z-index: 1;
 }
 
 .timeline-connector.active::after {
-  transform: scaleY(1);
+  transform: translateX(-50%) scaleY(1);
 }
 
 /* Glass morphism effects */
@@ -189,6 +208,10 @@
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23671121' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
+.pattern-compass {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,2 L50,98 M2,50 L98,50 M25,25 L75,75 M75,25 L25,75' stroke='%23671121' stroke-width='1' stroke-opacity='0.07' fill='none'/%3E%3Ccircle cx='50' cy='50' r='30' stroke='%23671121' stroke-width='1' stroke-opacity='0.07' fill='none'/%3E%3C/svg%3E");
+}
+
 .travel-card {
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -196,5 +219,37 @@
 
 .travel-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Safari-style button styling */
+.safari-btn {
+  background-color: theme('colors.tertiary.DEFAULT');
+  color: theme('colors.tertiary.foreground');
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.safari-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Jungle-style button styling */
+.jungle-btn {
+  background-color: theme('colors.accent.DEFAULT');
+  color: theme('colors.accent.foreground');
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.jungle-btn:hover {
+  transform: translateY(-2px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
