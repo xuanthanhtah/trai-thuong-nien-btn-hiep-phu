@@ -3,6 +3,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import supabase from "@/utils/supabase";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "@/components/Loading";
 
 const events: Event[] = [
   {
@@ -72,10 +73,8 @@ const Index = () => {
     },
   });
 
-  console.log(qListEvent);
-
   return qListEvent.isLoading ? (
-    <>Loading</>
+    <Loading />
   ) : (
     <div className="min-h-screen bg-background pattern-worldmap">
       <Nav />
