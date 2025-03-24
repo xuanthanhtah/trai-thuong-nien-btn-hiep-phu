@@ -1,7 +1,9 @@
+
 import React, { useEffect, useRef } from "react";
 import EventCard from "./EventCard";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export interface Event {
   id: number;
@@ -22,6 +24,7 @@ interface EventTimelineProps {
 
 const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
   const timelineRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -112,8 +115,10 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
           </div>
 
           <div className="relative">
-            {/* Center timeline */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/20"></div>
+            {/* Center timeline - hidden on mobile */}
+            {!isMobile && (
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-primary/20"></div>
+            )}
 
             {events.map((event, index) => (
               <div
@@ -122,10 +127,12 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
                   "timeline-connector relative mb-16 md:mb-24 last:mb-0 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
                 )}
               >
-                {/* Timeline node */}
-                <div className="absolute left-1/2 top-0 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2 z-10">
-                  <div className="w-6 h-6 rounded-full bg-primary border-4 border-background"></div>
-                </div>
+                {/* Timeline node - hidden on mobile */}
+                {!isMobile && (
+                  <div className="absolute left-1/2 top-0 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2 z-10">
+                    <div className="w-6 h-6 rounded-full bg-primary border-4 border-background"></div>
+                  </div>
+                )}
 
                 {/* Event card - alternating sides */}
                 {index % 2 === 0 ? (
