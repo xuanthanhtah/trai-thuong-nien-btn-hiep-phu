@@ -129,15 +129,8 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
                   !isMobile ? "timeline-connector" : ""
                 )}
               >
-                {/* Timeline node - hidden on mobile */}
-                {!isMobile && (
-                  <div className="absolute left-1/2 top-0 md:top-1/2 transform -translate-x-1/2 md:-translate-y-1/2 z-10">
-                    <div className="w-6 h-6 rounded-full bg-primary border-4 border-background"></div>
-                  </div>
-                )}
-
                 {/* Desktop view - alternating sides */}
-                {!isMobile && (
+                {!isMobile ? (
                   <>
                     {index % 2 === 0 ? (
                       <>
@@ -161,10 +154,8 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
                       </>
                     )}
                   </>
-                )}
-
-                {/* Mobile view - shows all events in a single column */}
-                {isMobile && (
+                ) : (
+                  // Mobile view - single column layout
                   <div
                     className="col-span-1 reveal"
                     style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
