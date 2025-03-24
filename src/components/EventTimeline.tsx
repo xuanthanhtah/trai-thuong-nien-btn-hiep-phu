@@ -27,6 +27,9 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
   const isMobile = useIsMobile();
 
   useEffect(() => {
+    // Only set up observers if we're in a browser environment
+    if (typeof window === "undefined") return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -41,25 +44,34 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
       }
     );
 
+    // Observe all elements with reveal class
     const timelineItems = document.querySelectorAll(".reveal");
     timelineItems.forEach((item) => {
       observer.observe(item);
     });
 
-    const timelineConnectors = document.querySelectorAll(".timeline-connector");
-    timelineConnectors.forEach((item) => {
-      observer.observe(item);
-    });
+    // Only observe timeline connectors if not on mobile
+    if (!isMobile) {
+      const timelineConnectors = document.querySelectorAll(".timeline-connector");
+      timelineConnectors.forEach((item) => {
+        observer.observe(item);
+      });
+    }
 
+    // Cleanup observer on unmount
     return () => {
       timelineItems.forEach((item) => {
         observer.unobserve(item);
       });
-      timelineConnectors.forEach((item) => {
-        observer.unobserve(item);
-      });
+      
+      if (!isMobile) {
+        const timelineConnectors = document.querySelectorAll(".timeline-connector");
+        timelineConnectors.forEach((item) => {
+          observer.unobserve(item);
+        });
+      }
     };
-  }, []);
+  }, [isMobile]);
 
   const scrollToTimeline = () => {
     if (timelineRef.current) {
@@ -124,42 +136,33 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
               <div
                 key={event.id}
                 className={cn(
-                  "relative mb-16 md:mb-24 last:mb-0 grid grid-cols-1 md:grid-cols-2 gap-8 items-center",
+                  "relative mb-16 md:mb-24 last:mb-0 items-center",
+                  // Grid layout different for mobile vs desktop
+                  isMobile ? "grid grid-cols-1" : "grid grid-cols-2 gap-8",
                   // Only apply timeline-connector class on desktop
                   !isMobile ? "timeline-connector" : ""
                 )}
               >
-                {/* Desktop view - alternating sides */}
                 {!isMobile ? (
-                  <>
-                    {index % 2 === 0 ? (
-                      <>
-                        <div
-                          className="md:text-right col-span-1 reveal"
-                          style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
-                        >
-                          <EventCard event={event} index={index} />
-                        </div>
-                        <div className="col-span-1 hidden md:block"></div>
-                      </>
-                    ) : (
-                      <>
-                        <div className="col-span-1 hidden md:block"></div>
-                        <div
-                          className="col-span-1 reveal"
-                          style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
-                        >
-                          <EventCard event={event} index={index} />
-                        </div>
-                      </>
-                    )}
-                  </>
+                  // Desktop view - alternating sides
+                  index % 2 === 0 ? (
+                    <>
+                      <div className="md:text-right col-span-1 reveal">
+                        <EventCard event={event} index={index} />
+                      </div>
+                      <div className="col-span-1 hidden md:block"></div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="col-span-1 hidden md:block"></div>
+                      <div className="col-span-1 reveal">
+                        <EventCard event={event} index={index} />
+                      </div>
+                    </>
+                  )
                 ) : (
                   // Mobile view - single column layout
-                  <div
-                    className="col-span-1 reveal"
-                    style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
-                  >
+                  <div className="col-span-1 reveal">
                     <EventCard event={event} index={index} />
                   </div>
                 )}
