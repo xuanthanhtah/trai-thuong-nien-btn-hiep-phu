@@ -27,5 +27,7 @@ npm run dev
 - React
 - shadcn-ui
 - Tailwind CSS
+- Cloudinary
+- Supabase
 
 ## CREATE BY XUANTHANH2609
