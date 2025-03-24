@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import EventCard from "./EventCard";
 import { ChevronDown } from "lucide-react";

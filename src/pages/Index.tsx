@@ -1,7 +1,8 @@
-import React from "react";
 import EventTimeline, { Event } from "@/components/EventTimeline";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import supabase from "@/utils/supabase";
+import { useQuery } from "@tanstack/react-query";
 
 const events: Event[] = [
   {
@@ -58,11 +59,28 @@ const events: Event[] = [
 ];
 
 const Index = () => {
-  return (
+  const qListEvent = useQuery({
+    queryKey: ["list-event"],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("Content_Trai").select("*");
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      return data;
+    },
+  });
+
+  console.log(qListEvent);
+
+  return qListEvent.isLoading ? (
+    <>Loading</>
+  ) : (
     <div className="min-h-screen bg-background pattern-worldmap">
       <Nav />
       <main>
-        <EventTimeline events={events} />
+        <EventTimeline events={qListEvent.data || []} />
       </main>
       <Footer />
     </div>
