@@ -124,7 +124,9 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
               <div
                 key={event.id}
                 className={cn(
-                  "timeline-connector relative mb-16 md:mb-24 last:mb-0 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+                  "relative mb-16 md:mb-24 last:mb-0 grid grid-cols-1 md:grid-cols-2 gap-8 items-center",
+                  // Only apply timeline-connector class on desktop
+                  !isMobile ? "timeline-connector" : ""
                 )}
               >
                 {/* Timeline node - hidden on mobile */}
@@ -134,36 +136,42 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
                   </div>
                 )}
 
-                {/* Event card - alternating sides */}
-                {index % 2 === 0 ? (
+                {/* Desktop view - alternating sides */}
+                {!isMobile && (
                   <>
-                    <div
-                      className="md:text-right col-span-1 reveal"
-                      style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
-                    >
-                      <EventCard event={event} index={index} />
-                    </div>
-                    <div className="col-span-1 hidden md:block"></div>
-                  </>
-                ) : (
-                  <>
-                    <div className="col-span-1 hidden md:block"></div>
-                    <div
-                      className="col-span-1 reveal"
-                      style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
-                    >
-                      <EventCard event={event} index={index} />
-                    </div>
+                    {index % 2 === 0 ? (
+                      <>
+                        <div
+                          className="md:text-right col-span-1 reveal"
+                          style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
+                        >
+                          <EventCard event={event} index={index} />
+                        </div>
+                        <div className="col-span-1 hidden md:block"></div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="col-span-1 hidden md:block"></div>
+                        <div
+                          className="col-span-1 reveal"
+                          style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
+                        >
+                          <EventCard event={event} index={index} />
+                        </div>
+                      </>
+                    )}
                   </>
                 )}
 
                 {/* Mobile view - shows all events in a single column */}
-                <div
-                  className="md:hidden col-span-1 reveal"
-                  style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
-                >
-                  {index % 2 === 1 && <EventCard event={event} index={index} />}
-                </div>
+                {isMobile && (
+                  <div
+                    className="col-span-1 reveal"
+                    style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
+                  >
+                    <EventCard event={event} index={index} />
+                  </div>
+                )}
               </div>
             ))}
           </div>

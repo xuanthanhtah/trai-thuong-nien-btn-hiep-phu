@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Event } from "./EventTimeline";
 import {
@@ -12,6 +13,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface EventCardProps {
   event: Event;
@@ -19,6 +21,8 @@ interface EventCardProps {
 }
 
 const EventCard: React.FC<EventCardProps> = ({ event, index }) => {
+  const isMobile = useIsMobile();
+  
   const getEventTypeClass = (type: Event["type"]) => {
     switch (type) {
       case "content":
@@ -47,7 +51,10 @@ const EventCard: React.FC<EventCardProps> = ({ event, index }) => {
 
   return (
     <div className="reveal" style={{ animationDelay: `${index * 0.1 + 0.1}s` }}>
-      <div className="absolute left-1/2 transform -translate-x-1/2 top-0 w-6 h-6 rounded-full bg-primary border-4 border-background z-10"></div>
+      {/* Only show the circle node on desktop */}
+      {!isMobile && (
+        <div className="absolute left-1/2 transform -translate-x-1/2 top-0 w-6 h-6 rounded-full bg-primary border-4 border-background z-10"></div>
+      )}
 
       <div
         className={cn(
