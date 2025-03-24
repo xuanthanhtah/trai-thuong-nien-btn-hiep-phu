@@ -27,8 +27,5 @@ npm run dev
 - React
 - shadcn-ui
 - Tailwind CSS
-Simply open [Lovable](https://lovable.dev/projects/5767127f-ed3f-441b-87d1-d25a3971ca68) and click on Share -> Publish.
 
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+## CREATE BY XUANTHANH2609
