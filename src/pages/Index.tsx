@@ -63,7 +63,10 @@ const Index = () => {
   const qListEvent = useQuery({
     queryKey: ["list-event"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("Content_Trai").select("*");
+      const { data, error } = await supabase
+        .from("Content_Trai")
+        .select("*")
+        .order("id", { ascending: true });
 
       if (error) {
         throw new Error(error.message);
