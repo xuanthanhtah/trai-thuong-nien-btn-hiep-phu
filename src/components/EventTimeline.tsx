@@ -96,7 +96,7 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
             style={{ animationDelay: "0.1s" }}
           >
             <span className="text-primary">UNBOX</span>
-            <span className="md:inline block md:ml-1">
+            <span className="md:inline block md:ml-1 mt-2">
               {isMobile ? "MỞ LÒNG" : "- MỞ LÒNG"}
             </span>
           </h1>
