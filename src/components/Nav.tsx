@@ -1,6 +1,16 @@
+
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Plane } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import TransferInfo from "./TransferInfo";
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -42,32 +52,22 @@ const Nav = () => {
           </a>
 
           <div className="flex items-center space-x-1">
-            {/* <a
-              href="#"
-              className="px-4 py-2 text-sm font-medium text-muted-foreground rounded-md hover:text-foreground transition-colors"
-            >
-              Destinations
-            </a>
-            <a
-              href="#"
-              className="px-4 py-2 text-sm font-medium text-muted-foreground rounded-md hover:text-foreground transition-colors"
-            >
-              Itinerary
-            </a>
-            <a
-              href="#"
-              className="px-4 py-2 text-sm font-medium text-muted-foreground rounded-md hover:text-foreground transition-colors"
-            >
-              Gallery
-            </a> */}
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLScSZmwVBugCvBbH5RgVpL8DH8sY0XILCOZaprCA6m6JXz79oQ/viewform?usp=header"
-              className="ml-4 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors w-[170px]"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Đăng ký đi trại ngay
-            </a>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="ml-4 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors w-[170px]">
+                  Đăng ký đi trại ngay
+                </button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Thông tin chuyển khoản</DialogTitle>
+                  <DialogDescription>
+                    Vui lòng chuyển khoản với thông tin bên dưới để đăng ký trại
+                  </DialogDescription>
+                </DialogHeader>
+                <TransferInfo />
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
