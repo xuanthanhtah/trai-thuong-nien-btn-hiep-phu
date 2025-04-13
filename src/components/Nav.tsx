@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Plane } from "lucide-react";
@@ -54,15 +53,16 @@ const Nav = () => {
           <div className="flex items-center space-x-1">
             <Dialog>
               <DialogTrigger asChild>
-                <button className="ml-4 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors w-[170px]">
-                  Đăng ký đi trại ngay
+                <button className="ml-4 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors w-[100%]">
+                  Thông tin chuyển khoản
                 </button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                   <DialogTitle>Thông tin chuyển khoản</DialogTitle>
                   <DialogDescription>
-                    Vui lòng chuyển khoản với thông tin bên dưới để đăng ký trại
+                    Vui lòng chuyển khoản vào tài khoản bên dưới để đóng tiền đi
+                    trại
                   </DialogDescription>
                 </DialogHeader>
                 <TransferInfo />
