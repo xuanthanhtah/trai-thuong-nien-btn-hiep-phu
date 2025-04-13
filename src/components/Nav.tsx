@@ -13,6 +13,7 @@ import TransferInfo from "./TransferInfo";
 
 const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,7 +52,7 @@ const Nav = () => {
           </a>
 
           <div className="flex items-center space-x-1">
-            <Dialog>
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
               <DialogTrigger asChild>
                 <button className="ml-4 px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors w-[100%]">
                   Thông tin chuyển khoản
@@ -65,7 +66,7 @@ const Nav = () => {
                     trại
                   </DialogDescription>
                 </DialogHeader>
-                <TransferInfo />
+                <TransferInfo onClose={() => setDialogOpen(false)} />
               </DialogContent>
             </Dialog>
           </div>

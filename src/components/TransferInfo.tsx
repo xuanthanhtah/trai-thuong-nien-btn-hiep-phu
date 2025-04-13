@@ -3,7 +3,11 @@ import { Check, Copy, QrCode } from "lucide-react";
 import { Button } from "./ui/button";
 import { useToast } from "@/hooks/use-toast";
 
-const TransferInfo = () => {
+interface TransferInfoProps {
+  onClose?: () => void;
+}
+
+const TransferInfo: React.FC<TransferInfoProps> = ({ onClose }) => {
   const { toast } = useToast();
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -25,7 +29,7 @@ const TransferInfo = () => {
       title: "Đã sao chép",
       description: "Thông tin đã được sao chép vào clipboard",
     });
-    setTimeout(() => setCopied(null), 2000);
+    setTimeout(() => setCopied(null), 1500);
   };
 
   return (
@@ -169,15 +173,27 @@ const TransferInfo = () => {
           </Button>
         </div>
 
-        <Button
-          className="w-full mt-4"
-          onClick={() => {
-            const fullText = `Số tài khoản: ${transferInfo.accountNumber}\nTên tài khoản: ${transferInfo.accountName}\nNgân hàng: ${transferInfo.bankName}\nSố tiền sinh viên: ${transferInfo.amountStudent}\nSố tiền đi làm: ${transferInfo.amountWorker}\nNội dung: ${transferInfo.content}`;
-            copyToClipboard(fullText, "all");
-          }}
-        >
-          Sao chép tất cả thông tin
-        </Button>
+        <div className="flex items-center justify-between gap-2 mt-4">
+          <Button
+            className="flex-1"
+            onClick={() => {
+              const fullText = `Số tài khoản: ${transferInfo.accountNumber}\nTên tài khoản: ${transferInfo.accountName}\nNgân hàng: ${transferInfo.bankName}\nSố tiền sinh viên: ${transferInfo.amountStudent}\nSố tiền đi làm: ${transferInfo.amountWorker}\nNội dung: ${transferInfo.content}`;
+              copyToClipboard(fullText, "all");
+            }}
+          >
+            Sao chép tất cả thông tin
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-32"
+            onClick={() => {
+              onClose?.();
+            }}
+          >
+            Đóng
+          </Button>
+        </div>
       </div>
     </div>
   );
