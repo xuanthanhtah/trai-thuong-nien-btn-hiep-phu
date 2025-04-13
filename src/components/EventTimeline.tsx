@@ -51,7 +51,9 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
 
     // Only observe timeline connectors if not on mobile
     if (!isMobile) {
-      const timelineConnectors = document.querySelectorAll(".timeline-connector");
+      const timelineConnectors = document.querySelectorAll(
+        ".timeline-connector"
+      );
       timelineConnectors.forEach((item) => {
         observer.observe(item);
       });
@@ -62,9 +64,11 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
       timelineItems.forEach((item) => {
         observer.unobserve(item);
       });
-      
+
       if (!isMobile) {
-        const timelineConnectors = document.querySelectorAll(".timeline-connector");
+        const timelineConnectors = document.querySelectorAll(
+          ".timeline-connector"
+        );
         timelineConnectors.forEach((item) => {
           observer.unobserve(item);
         });
@@ -91,7 +95,10 @@ const EventTimeline: React.FC<EventTimelineProps> = ({ events }) => {
             className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in"
             style={{ animationDelay: "0.1s" }}
           >
-            <span className="text-primary">UNBOX</span> - MỞ LÒNG
+            <span className="text-primary">UNBOX</span>
+            <span className="md:inline block md:ml-1">
+              {isMobile ? "MỞ LÒNG" : "- MỞ LÒNG"}
+            </span>
           </h1>
           <p
             className="text-lg md:text-xl text-muted-foreground mb-10 animate-fade-in"
