@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Event } from "./EventTimeline";
 import {
@@ -121,6 +120,7 @@ const EventCard: React.FC<EventCardProps> = ({ event, index }) => {
 
           <p className="text-muted-foreground mb-4 line-clamp-3 text-justify">
             {event.description}
+            {event.description.length > 300 ? "..." : ""}
           </p>
 
           {event.link && (
